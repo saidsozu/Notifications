@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { NotificationsService } from './notifications.service';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogComponent } from './dialog/dialog.component';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +11,7 @@ import { NotificationsService } from './notifications.service';
 export class AppComponent {
   title = 'angularnotifications';
 
-  constructor(private notification: NotificationsService) { }
+  constructor(private notification: NotificationsService, public dialog: MatDialog) { }
 
   success() {
     this.notification.success('Submitted successfully');
@@ -19,7 +21,7 @@ export class AppComponent {
     this.notification.warn('Warning');
   }
 
-  error() {
-    console.log('error()');
+  error(): void {
+    this.dialog.open(DialogComponent);
   }
 }
